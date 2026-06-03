@@ -1,7 +1,14 @@
 import { Pool } from 'pg';
 
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error(
+    'DATABASE_URL no está configurado. Define la variable en .env.local o en la configuración de tu despliegue.'
+  );
+}
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString,
   ssl: { rejectUnauthorized: false }
 });
 
