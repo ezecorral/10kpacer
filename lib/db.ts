@@ -1,16 +1,28 @@
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Pool } from 'pg';
 
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error(
-    'DATABASE_URL no está configurado. Define la variable en .env.local o en la configuración de tu despliegue.'
-  );
-}
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+let supabase: SupabaseClient | null = null;
+let pool: Pool | null = null;
 
-const pool = new Pool({
-  connectionString,
-  ssl: { rejectUnauthorized: false }
-});
+if (supabaseUrl && supabaseServiceRoleKey) {
+  supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
+    auth: { persistSession: false }
+  });
+} else {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error(
+      'No se encontró configuración de base de datos. Define SUPABASE_URL y SUPABASE_SERVICE_ROLE_KEY en Vercel, o DATABASE_URL en desarrollo local.'
+    );
+  }
+
+  pool = new Pool({
+    connectionString,
+    ssl: { rejectUnauthorized: false }
+  });
+}
 
 export type PrincipalRecord = {
   nombre_apellido: string;
@@ -41,6 +53,18 @@ export type PrincipalRecord = {
 };
 
 export async function insertPrincipal(record: PrincipalRecord) {
+  if (supabase) {
+    const { error } = await supabase.from('Principal').insert([record]);
+    if (error) {
+      throw error;
+    }
+    return;
+  }
+
+  if (!pool) {
+    throw new Error('El cliente de base de datos no está inicializado.');
+  }
+
   const client = await pool.connect();
   try {
     await client.query(`
