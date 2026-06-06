@@ -75,9 +75,11 @@ export default function Resultados() {
     <div className={styles.page}>
       <Head>
         <title>Resultados | 10K Pacer</title>
+        <link rel="icon" href="/Logo.png" />
       </Head>
-      <section className={styles.hero}>
+      <section className={`${styles.hero} ${styles.resultHero}`}>
         <div className={styles.heroContent}>
+          <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
           <span className={styles.callout}>Informe de resultados</span>
           <h1 className={styles.heroTitle}>Tu reporte con base en el modelo del Excel</h1>
           <p className={styles.heroSubtitle}>
@@ -87,6 +89,7 @@ export default function Resultados() {
       </section>
 
       <section className={styles.card}>
+        <div className={styles.heroImageResult} />
         <div className={styles.grid}>
           <div>
             <h2>Datos enviados</h2>

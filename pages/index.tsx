@@ -41,10 +41,12 @@ export default function Home() {
           name="description"
           content="Bienvenida profesional para corredores con cálculo automático y registro de datos en Supabase."
         />
+        <link rel="icon" href="/Logo.png" />
       </Head>
 
       <section className={styles.hero}>
         <div className={styles.heroContent}>
+          <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
           <span className={styles.callout}>10K PACER</span>
           <h1 className={styles.heroTitle}>Descubre tu potencial real como corredor.</h1>
           <p className={styles.heroSubtitle}>
@@ -56,7 +58,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className={styles.imagePanel}>
+        <div className={styles.imagePanel} style={{ backgroundImage: "url('/Llegada1.jpg')" }}>
           <div className={styles.imagePanelContent}>
             <h3>Bienvenido a la evaluación de rendimiento</h3>
             <p>
