@@ -1,11 +1,14 @@
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
+const STORAGE_KEY = 'runnerFormData';
 const timePattern = '^([0-1]?\\d|2[0-3]):[0-5]\\d:[0-5]\\d$';
 
 export default function Home() {
   const [status, setStatus] = useState<string>('');
+  const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,8 +25,8 @@ export default function Home() {
     });
 
     if (response.ok) {
-      setStatus('¡Gracias! Los datos se guardaron correctamente.');
-      form.reset();
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      router.push('/resultados');
     } else {
       const body = await response.json();
       setStatus(body.error || 'Ocurrió un error al enviar los datos.');
