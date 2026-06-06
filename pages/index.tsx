@@ -50,11 +50,11 @@ export default function Home() {
           <span className={styles.callout}>10K Pacer</span>
           <h1 className={styles.heroTitle}>Entrena con datos, no con suposiciones.</h1>
           <p className={styles.heroSubtitle}>
-            Completa tu perfil y obtén un reporte personalizado de tu IMC, VO2max y frecuencia cardíaca.
-            Guarda tus datos en la tabla <strong>Principal</strong> para un análisis profesional y seguimiento confiable.
+            Completa tu perfil y obtén un reporte inmediato de tu rendimiento.
+            Descubre tu estado actual, tu potencial de mejora y tu próximo paso para correr mejor.
           </p>
           <p className={styles.heroSubtitle}>
-            La evaluación compara tu estado actual con las referencias pSE y Elite para definir tu próximo ciclo de mejora.
+            El informe se enfoca en tu desempeño real y en comparativas de referencia para guiar tu entrenamiento.
           </p>
         </div>
       </section>

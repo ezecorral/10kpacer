@@ -225,7 +225,7 @@ textarea.textarea {
 .metricsGrid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .metricCard {
@@ -236,6 +236,42 @@ textarea.textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.indicatorPanel {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.indicatorCard {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+}
+
+.indicatorLabel {
+  margin: 0 0 10px;
+  color: #b2c1ff;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.indicatorValue {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.indicatorNote {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.98rem;
 }
 
 .metricCard h3 {

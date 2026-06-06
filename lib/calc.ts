@@ -130,11 +130,25 @@ export function calculateResults(input: RunnerInput) {
   const mejoraKmSemanalesPse = kmSemPse - input.kms_semanales;
   const mejoraKmSemanalesElite = kmSemElite - input.kms_semanales;
 
+  const imcDeltaRatio = clamp(0, mejoraImcPse / 5, 1);
+  const vo2DeltaRatio = clamp(0, mejoraVo2Pse / vo2PromMaxSexed, 1);
+  const fcDeltaRatio = clamp(0, mejoraFcMax / maxHrPredicted, 1);
+  const kmDeltaRatio = clamp(0, mejoraKmSemanalesPse / kmSemPse, 1);
+
+  const ipg = Math.round(95 - (imcDeltaRatio + vo2DeltaRatio + fcDeltaRatio + kmDeltaRatio) * 5);
+
+  const eliteImcRatio = clamp(0, mejoraImcElite / 5, 1);
+  const eliteVo2Ratio = clamp(0, mejoraVo2Elite / vo2PromMaxElite, 1);
+  const eliteKmRatio = clamp(0, mejoraKmSemanalesElite / kmSemElite, 1);
+  const eliteAverage = (eliteImcRatio + eliteVo2Ratio + eliteKmRatio) / 3;
+  const ipe = Math.round(99 - eliteAverage * 58);
+
   return {
     imc,
     imcIdeal,
     mejoraImcPse,
     mejoraImcElite,
+    imcImprovementPercent: Math.max(0, (mejoraImcPse / imcIdeal) * 100),
     vo2JackDaniels,
     maxHrPredicted,
     vo2Combined,
@@ -142,12 +156,17 @@ export function calculateResults(input: RunnerInput) {
     vo2PromMaxElite,
     mejoraVo2Pse,
     mejoraVo2Elite,
+    vo2ImprovementPercent: Math.max(0, (mejoraVo2Pse / vo2PromMaxSexed) * 100),
     mejoraFcMax,
+    fcImprovementPercent: Math.max(0, (mejoraFcMax / maxHrPredicted) * 100),
     mejoraYearsPse,
     mejoraYearsElite,
     kmSemPse,
     kmSemElite,
     mejoraKmSemanalesPse,
     mejoraKmSemanalesElite,
+    kmImprovementPercent: Math.max(0, (mejoraKmSemanalesPse / kmSemPse) * 100),
+    ipg,
+    ipe,
   };
 }

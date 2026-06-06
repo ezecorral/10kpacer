@@ -109,7 +109,7 @@ export default function Resultados() {
               />
             </div>
             <p className={styles.metricDelta}>Reducir {results.mejoraImcPse.toFixed(1)} kg/m² para llegar a pSE</p>
-            <p className={styles.metricDelta}>Reducir {results.mejoraImcElite.toFixed(1)} kg/m² para llegar a Elite</p>
+            <p className={styles.metricDelta}>Mejora disponible: {results.imcImprovementPercent.toFixed(0)}%</p>
           </div>
 
           <div className={styles.metricCard}>
@@ -124,7 +124,7 @@ export default function Resultados() {
               />
             </div>
             <p className={styles.metricDelta}>Espacio de mejora pSE: {results.mejoraVo2Pse.toFixed(1)}</p>
-            <p className={styles.metricDelta}>Espacio de mejora Elite: {results.mejoraVo2Elite.toFixed(1)}</p>
+            <p className={styles.metricDelta}>Mejora disponible: {results.vo2ImprovementPercent.toFixed(0)}%</p>
           </div>
 
           <div className={styles.metricCard}>
@@ -138,7 +138,35 @@ export default function Resultados() {
               />
             </div>
             <p className={styles.metricDelta}>Potencial mejora: {results.mejoraFcMax.toFixed(0)} ppm</p>
-            <p className={styles.metricDelta}>RHR actual: {input.rhr} ppm</p>
+            <p className={styles.metricDelta}>Mejora disponible: {results.fcImprovementPercent.toFixed(0)}%</p>
+          </div>
+
+          <div className={styles.metricCard}>
+            <h3>Km semanales</h3>
+            <p className={styles.metricValue}>{input.kms_semanales.toFixed(1)}</p>
+            <p className={styles.metricCaption}>pSE: {results.kmSemPse} km/sem</p>
+            <p className={styles.metricCaption}>Elite: {results.kmSemElite} km/sem</p>
+            <div className={styles.metricTrack}>
+              <span
+                className={styles.metricProgress}
+                style={{ width: `${Math.min(100, (input.kms_semanales / results.kmSemElite) * 100)}%` }}
+              />
+            </div>
+            <p className={styles.metricDelta}>Mejora disponible: {results.kmImprovementPercent.toFixed(0)}%</p>
+            <p className={styles.metricDelta}>Faltan {results.mejoraKmSemanalesPse.toFixed(1)} km para pSE</p>
+          </div>
+        </div>
+
+        <div className={styles.indicatorPanel}>
+          <div className={styles.indicatorCard}>
+            <p className={styles.indicatorLabel}>IPG</p>
+            <p className={styles.indicatorValue}>{results.ipg}%</p>
+            <p className={styles.indicatorNote}>Indicador de Performance General basado en tu brecha frente a pSE.</p>
+          </div>
+          <div className={styles.indicatorCard}>
+            <p className={styles.indicatorLabel}>IPE</p>
+            <p className={styles.indicatorValue}>{results.ipe}%</p>
+            <p className={styles.indicatorNote}>Índice de Performance Elite según tu distancia relativa al grupo Elite.</p>
           </div>
         </div>
 
