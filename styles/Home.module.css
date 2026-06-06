@@ -13,6 +13,13 @@
   align-items: center;
 }
 
+.welcomeHero {
+  background: linear-gradient(135deg, rgba(255, 102, 31, 0.18), rgba(8, 15, 25, 0.96));
+  border-radius: 32px;
+  padding: 36px;
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.2);
+}
+
 .heroContent {
   max-width: 640px;
 }
@@ -49,10 +56,7 @@
 }
 
 .hero.resultHero {
-  background-image: linear-gradient(135deg, rgba(255, 53, 20, 0.2), rgba(8, 16, 30, 0.95)),
-    url('/Performance1.jpg');
-  background-size: cover;
-  background-position: center;
+  background-image: linear-gradient(135deg, rgba(255, 102, 31, 0.92), rgba(11, 15, 25, 0.98));
   color: #fff;
 }
 
@@ -63,9 +67,7 @@
 .heroImageResult {
   height: 280px;
   border-radius: 24px;
-  background-image: url('/Performance1.jpg');
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(180deg, rgba(255, 102, 31, 0.18), rgba(8, 16, 30, 0.96));
   margin: 0 -32px 24px;
 }
 
@@ -177,7 +179,7 @@ textarea.textarea {
   border: none;
   border-radius: 18px;
   padding: 16px 24px;
-  background: linear-gradient(135deg, var(--accent), #ff9165);
+  background: linear-gradient(135deg, #ff8b3c, #ff5a2b);
   color: #08101b;
   font-weight: 700;
   transition: transform 0.22s ease, box-shadow 0.22s ease;
@@ -190,6 +192,85 @@ textarea.textarea {
 
 .status {
   color: #b7c9ff;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 110, 45, 0.16);
+  color: #adb9d6;
+  font-size: 0.95rem;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.footerLink:hover {
+  color: #fff;
+}
+
+.footerBrand {
+  min-width: 220px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 24px;
+}
+
+.modalBox {
+  background: #08101b;
+  border: 1px solid rgba(255, 110, 45, 0.22);
+  border-radius: 28px;
+  width: min(860px, 100%);
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px 0;
+}
+
+.modalClose {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.modalBody {
+  padding: 0 28px 28px;
+  color: #d9e3ff;
+  line-height: 1.7;
+  font-size: 0.98rem;
 }
 
 .welcomeImageSection {
@@ -208,8 +289,8 @@ textarea.textarea {
 }
 
 .darkCard {
-  background: #08101b;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(16, 20, 34, 0.96), rgba(17, 18, 29, 0.98));
+  border: 1px solid rgba(255, 110, 45, 0.16);
   color: #edf2ff;
 }
 
@@ -243,6 +324,56 @@ textarea.textarea {
   gap: 20px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 28px;
+}
+
+.indicatorHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.logoSmall {
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+}
+
+.brandTag {
+  color: #ffd39f;
+  font-weight: 700;
+}
+
+.shareSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 22px 22px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+}
+
+.shareText {
+  margin: 0;
+  color: #d9e3ff;
+  max-width: 680px;
+}
+
+.shareButton {
+  border: none;
+  border-radius: 18px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #ff8b3c, #ff5a2b);
+  color: #08101b;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .indicatorCard {

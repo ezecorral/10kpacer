@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import LegalModal from '../components/LegalModal';
 import styles from '../styles/Home.module.css';
 
 const STORAGE_KEY = 'runnerFormData';
@@ -8,6 +9,7 @@ const timePattern = '^([0-1]?\\d|2[0-3]):[0-5]\\d:[0-5]\\d$';
 
 export default function Home() {
   const [status, setStatus] = useState<string>('');
+  const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
   const router = useRouter();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -33,6 +35,10 @@ export default function Home() {
     }
   }
 
+  const privacyText = `En 10kPacer valoramos tu confianza y utilizamos tus datos únicamente para generar métricas objetivas, comparativos y recomendaciones de rendimiento. La información que proporcionas se usa para calcular tu IMC, VO2max, frecuencia cardíaca, kilómetros semanales y otras referencias de entrenamiento dentro de este sistema. No vendemos tus datos y no los compartimos con terceros comerciales. Los datos se emplean para presentarte un diagnóstico de performance y un punto de partida para que tú manejes tu entrenamiento con mayor claridad. Esta plataforma no ofrece asesoramiento personalizado ni reemplaza la opinión de un profesional. Los cálculos son resultados matemáticos y estadísticos basados en la información que ingresas; su interpretación y uso depende exclusivamente de cada usuario. El propósito del Aviso de Privacidad es dejar en claro que esta solución actúa como herramienta de métricas y comparativos, no como consejo médico, deportivo o profesional. Tu información se conserva temporalmente en este entorno para permitir el cálculo inmediato y la presentación de resultados. Si decides compartir tus métricas, corresponderá a ti hacerlo de manera voluntaria. En ningún caso 10kPacer asume responsabilidad por decisiones personales derivadas del uso de estos indicadores. Esta plataforma respeta la privacidad de quienes la utilizan y su única función es facilitar datos de rendimiento. Si tienes dudas concretas sobre tu salud o tu entrenamiento, consulta con un médico, entrenador o profesional acreditado antes de tomar decisiones basadas en estos resultados.`;
+
+  const termsText = `10kPacer ofrece métricas y resultados basados en los datos que ingresas, sin que esto constituya asesoramiento médico, deportivo, profesional o de cualquier otra naturaleza. Esta herramienta genera indicadores como IPG e IPE, pero no sustituye la consulta con un profesional de la salud o del deporte. El contenido que aquí se presenta es informativo: son valores derivados de fórmulas, comparativos internos y referencias de rendimiento. No garantizamos resultados ni asumimos responsabilidad por tu entrenamiento, tu condición física ni las acciones que tomes con estas métricas. El usuario es el único responsable de cómo emplea la información proporcionada. Si decides ajustar tu entrenamiento, nutrición o rutinas basadas en estos datos, hazlo bajo tu propia responsabilidad y, de ser necesario, con la supervisión de expertos calificados. Esta plataforma no certifica, no recomienda ni no avala prácticas de salud, deporte o medicina. El objetivo es entregar un panorama numérico y comparativo, no dictar una prescripción. Cualquier interpretación, decisión o cambio de hábito a partir de estos resultados queda a cargo del usuario. En caso de requerir asesoramiento especializado, contacta directamente a profesionales acreditados. 10kPacer es una herramienta de métricas, y su uso implica asumir que cada persona es responsable de su propio proceso y de los efectos que puedan derivarse de la información obtenida aquí.`;
+
   return (
     <div className={styles.page}>
       <Head>
@@ -44,7 +50,7 @@ export default function Home() {
         <link rel="icon" href="/Logo.png" />
       </Head>
 
-      <section className={styles.hero}>
+      <section className={`${styles.hero} ${styles.welcomeHero}`}>
         <div className={styles.heroContent}>
           <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
           <span className={styles.callout}>10K Pacer</span>
@@ -252,6 +258,26 @@ export default function Home() {
           </div>
         </form>
       </section>
-    </div>
+
+    <footer className={styles.footer}>
+      <div className={styles.footerBrand}>10kPacer. Todos los derechos reservados.</div>
+      <div className={styles.footerLinks}>
+        <button type="button" className={styles.footerLink} onClick={() => setModalType('privacy')}>
+          Aviso de Privacidad
+        </button>
+        <button type="button" className={styles.footerLink} onClick={() => setModalType('terms')}>
+          Términos y Condiciones
+        </button>
+      </div>
+    </footer>
+
+    <LegalModal open={modalType === 'privacy'} title="Aviso de Privacidad" onClose={() => setModalType(null)}>
+      <p>{privacyText}</p>
+    </LegalModal>
+    <LegalModal open={modalType === 'terms'} title="Términos y Condiciones" onClose={() => setModalType(null)}>
+      <p>{termsText}</p>
+    </LegalModal>
+  </div>
   );
 }
+

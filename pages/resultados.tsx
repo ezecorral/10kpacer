@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { calculateResults, getGenderKey, RunnerInput } from '../lib/calc';
+import LegalModal from '../components/LegalModal';
 import styles from '../styles/Home.module.css';
 
 const STORAGE_KEY = 'runnerFormData';
@@ -11,6 +12,7 @@ type ResultData = ReturnType<typeof calculateResults>;
 export default function Resultados() {
   const [input, setInput] = useState<RunnerInput | null>(null);
   const [results, setResults] = useState<ResultData | null>(null);
+  const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -70,6 +72,25 @@ export default function Resultados() {
       </div>
     );
   }
+
+  const privacyText = `En 10kPacer valoramos tu confianza y utilizamos tus datos únicamente para generar métricas objetivas, comparativos y recomendaciones de rendimiento. La información que proporcionas se usa para calcular tu IMC, VO2max, frecuencia cardíaca, kilómetros semanales y otras referencias de entrenamiento dentro de este sistema. No vendemos tus datos y no los compartimos con terceros comerciales. Los datos se emplean para presentarte un diagnóstico de performance y un punto de partida para que tú manejes tu entrenamiento con mayor claridad. Esta plataforma no ofrece asesoramiento personalizado ni reemplaza la opinión de un profesional. Los cálculos son resultados matemáticos y estadísticos basados en la información que ingresas; su interpretación y uso depende exclusivamente de cada usuario. El propósito del Aviso de Privacidad es dejar en claro que esta solución actúa como herramienta de métricas y comparativos, no como consejo médico, deportivo o profesional. Tu información se conserva temporalmente en este entorno para permitir el cálculo inmediato y la presentación de resultados. Si decides compartir tus métricas, corresponderá a ti hacerlo de manera voluntaria. En ningún caso 10kPacer asume responsabilidad por decisiones personales derivadas del uso de estos indicadores. Esta plataforma respeta la privacidad de quienes la utilizan y su única función es facilitar datos de rendimiento. Si tienes dudas concretas sobre tu salud o tu entrenamiento, consulta con un médico, entrenador o profesional acreditado antes de tomar decisiones basadas en estos resultados.`;
+
+  const termsText = `10kPacer ofrece métricas y resultados basados en los datos que ingresas, sin que esto constituya asesoramiento médico, deportivo, profesional o de cualquier otra naturaleza. Esta herramienta genera indicadores como IPG e IPE, pero no sustituye la consulta con un profesional de la salud o del deporte. El contenido que aquí se presenta es informativo: son valores derivados de fórmulas, comparativos internos y referencias de rendimiento. No garantizamos resultados ni asumimos responsabilidad por tu entrenamiento, tu condición física ni las acciones que tomes con estas métricas. El usuario es el único responsable de cómo emplea la información proporcionada. Si decides ajustar tu entrenamiento, nutrición o rutinas basadas en estos datos, hazlo bajo tu propia responsabilidad y, de ser necesario, con la supervisión de expertos calificados. Esta plataforma no certifica, no recomienda ni no avala prácticas de salud, deporte o medicina. El objetivo es entregar un panorama numérico y comparativo, no dictar una prescripción. Cualquier interpretación, decisión o cambio de hábito a partir de estos resultados queda a cargo del usuario. En caso de requerir asesoramiento especializado, contacta directamente a profesionales acreditados. 10kPacer es una herramienta de métricas, y su uso implica asumir que cada persona es responsable de su propio proceso y de los efectos que puedan derivarse de la información obtenida aquí.`;
+
+  const shareText = `Mi IPG es ${results?.ipg}% y mi IPE es ${results?.ipe}%. Datos de 10kPacer.`;
+
+  const handleInstagramShare = async () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareText);
+      window.open('https://www.instagram.com/', '_blank');
+    } catch (error) {
+      window.alert('El texto ya está copiado. Abre Instagram y pégalo en tu historia.');
+    }
+  };
 
   return (
     <div className={styles.page}>
@@ -153,21 +174,60 @@ export default function Resultados() {
               />
             </div>
             <p className={styles.metricDelta}>Mejora disponible: {results.kmImprovementPercent.toFixed(0)}%</p>
-            <p className={styles.metricDelta}>Faltan {results.mejoraKmSemanalesPse.toFixed(1)} km para pSE</p>
+            <p className={styles.metricDelta}>
+              {results.mejoraKmSemanalesPse < 0
+                ? `Estás ${Math.abs(results.mejoraKmSemanalesPse).toFixed(1)} km/sem por encima de pSE! Felicitaciones!`
+                : `Faltan ${results.mejoraKmSemanalesPse.toFixed(1)} km para pSE`}
+            </p>
+          </div>
+
+          <div className={styles.metricCard}>
+            <h3>Posibilidad de mejora años</h3>
+            <p className={styles.metricValue}>{results.mejoraYearsPse.toFixed(1)}%</p>
+            <p className={styles.metricCaption}>pSE: {results.mejoraYearsPse.toFixed(1)}%</p>
+            <p className={styles.metricCaption}>Elite: {results.mejoraYearsElite.toFixed(1)}%</p>
+            <div className={styles.metricTrack}>
+              <span
+                className={styles.metricProgress}
+                style={{ width: `${Math.min(100, results.mejoraYearsPse)}%` }}
+              />
+            </div>
+            <p className={styles.metricDelta}>Tu probabilidad de mejora pSE es {results.mejoraYearsPse.toFixed(1)}%.</p>
+            <p className={styles.metricDelta}>Posible Elite: {results.mejoraYearsElite.toFixed(1)}%.</p>
           </div>
         </div>
 
         <div className={styles.indicatorPanel}>
           <div className={styles.indicatorCard}>
+            <div className={styles.indicatorHead}>
+              <img src="/Logo.png" alt="10kPacer" className={styles.logoSmall} />
+              <span className={styles.brandTag}>10kPacer</span>
+            </div>
             <p className={styles.indicatorLabel}>IPG</p>
             <p className={styles.indicatorValue}>{results.ipg}%</p>
-            <p className={styles.indicatorNote}>Indicador de Performance General basado en tu brecha frente a pSE.</p>
+            <p className={styles.indicatorNote}>
+              Indicador General de Performance basado en tu brecha frente al grupo etario amateur / pSE.
+            </p>
           </div>
           <div className={styles.indicatorCard}>
+            <div className={styles.indicatorHead}>
+              <img src="/Logo.png" alt="10kPacer" className={styles.logoSmall} />
+              <span className={styles.brandTag}>10kPacer</span>
+            </div>
             <p className={styles.indicatorLabel}>IPE</p>
             <p className={styles.indicatorValue}>{results.ipe}%</p>
-            <p className={styles.indicatorNote}>Índice de Performance Elite según tu distancia relativa al grupo Elite.</p>
+            <p className={styles.indicatorNote}>
+              Índice Elite que muestra qué tanto te acercas al nivel Elite dentro de la referencia de tu categoría.
+            </p>
           </div>
+        </div>
+        <div className={styles.shareSection}>
+          <p className={styles.shareText}>
+            Comparte tu IPG e IPE en Instagram: copia el texto y abre Instagram para publicarlo en tu historia.
+          </p>
+          <button type="button" className={styles.shareButton} onClick={handleInstagramShare}>
+            Copiar texto y abrir Instagram
+          </button>
         </div>
 
         <div className={styles.resultSummary}>
@@ -197,6 +257,25 @@ export default function Resultados() {
             Volver al formulario
           </Link>
         </div>
+
+        <footer className={styles.footer}>
+          <div className={styles.footerBrand}>10kPacer. Todos los derechos reservados.</div>
+          <div className={styles.footerLinks}>
+            <button type="button" className={styles.footerLink} onClick={() => setModalType('privacy')}>
+              Aviso de Privacidad
+            </button>
+            <button type="button" className={styles.footerLink} onClick={() => setModalType('terms')}>
+              Términos y Condiciones
+            </button>
+          </div>
+        </footer>
+
+        <LegalModal open={modalType === 'privacy'} title="Aviso de Privacidad" onClose={() => setModalType(null)}>
+          <p>{privacyText}</p>
+        </LegalModal>
+        <LegalModal open={modalType === 'terms'} title="Términos y Condiciones" onClose={() => setModalType(null)}>
+          <p>{termsText}</p>
+        </LegalModal>
       </section>
     </div>
   );
