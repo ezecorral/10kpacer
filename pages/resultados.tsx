@@ -80,19 +80,71 @@ export default function Resultados() {
       <section className={`${styles.hero} ${styles.resultHero}`}>
         <div className={styles.heroContent}>
           <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
-          <span className={styles.callout}>Informe de resultados</span>
-          <h1 className={styles.heroTitle}>Tu reporte con base en el modelo del Excel</h1>
+          <span className={styles.callout}>Reporte de Performance</span>
+          <h1 className={styles.heroTitle}>Tu informe de performance con datos reales</h1>
           <p className={styles.heroSubtitle}>
-            Aquí tienes los cálculos principales que se derivan de tus datos y de las tablas de referencia del plan.
+            Esta página compara tu perfil actual con valores de referencia pSE y Elite para mostrar tus espacios de mejora más relevantes.
           </p>
         </div>
       </section>
 
-      <section className={styles.card}>
-        <div className={styles.heroImageResult} />
-        <div className={styles.grid}>
+      <section className={`${styles.card} ${styles.darkCard}`}>
+        <div className={styles.reportHeader}>
+          <h2>Diagnóstico rápido</h2>
+          <p>
+            Tres pilares para tu próximo ciclo: IMC, VO2max y FCmax. Aquí ves tu estado actual, tus referencias y el potencial de mejora.
+          </p>
+        </div>
+
+        <div className={styles.metricsGrid}>
+          <div className={styles.metricCard}>
+            <h3>IMC</h3>
+            <p className={styles.metricValue}>{results.imc.toFixed(1)}</p>
+            <p className={styles.metricCaption}>Meta pSE: {results.imcIdeal.toFixed(1)}</p>
+            <p className={styles.metricCaption}>Meta Elite: {(results.imcIdeal - 1.5).toFixed(1)}</p>
+            <div className={styles.metricTrack}>
+              <span
+                className={styles.metricProgress}
+                style={{ width: `${Math.min(100, (results.imc / 30) * 100)}%` }}
+              />
+            </div>
+            <p className={styles.metricDelta}>Reducir {results.mejoraImcPse.toFixed(1)} kg/m² para llegar a pSE</p>
+            <p className={styles.metricDelta}>Reducir {results.mejoraImcElite.toFixed(1)} kg/m² para llegar a Elite</p>
+          </div>
+
+          <div className={styles.metricCard}>
+            <h3>VO2max</h3>
+            <p className={styles.metricValue}>{results.vo2Combined.toFixed(1)}</p>
+            <p className={styles.metricCaption}>Referente pSE: {results.vo2PromMaxSexed.toFixed(1)}</p>
+            <p className={styles.metricCaption}>Referente Elite: {results.vo2PromMaxElite.toFixed(1)}</p>
+            <div className={styles.metricTrack}>
+              <span
+                className={styles.metricProgress}
+                style={{ width: `${Math.min(100, (results.vo2Combined / results.vo2PromMaxElite) * 100)}%` }}
+              />
+            </div>
+            <p className={styles.metricDelta}>Espacio de mejora pSE: {results.mejoraVo2Pse.toFixed(1)}</p>
+            <p className={styles.metricDelta}>Espacio de mejora Elite: {results.mejoraVo2Elite.toFixed(1)}</p>
+          </div>
+
+          <div className={styles.metricCard}>
+            <h3>FCmax</h3>
+            <p className={styles.metricValue}>{input.fc_max.toFixed(0)} ppm</p>
+            <p className={styles.metricCaption}>Estimado objetivo: {results.maxHrPredicted.toFixed(0)} ppm</p>
+            <div className={styles.metricTrack}>
+              <span
+                className={styles.metricProgress}
+                style={{ width: `${Math.min(100, (input.fc_max / results.maxHrPredicted) * 100)}%` }}
+              />
+            </div>
+            <p className={styles.metricDelta}>Potencial mejora: {results.mejoraFcMax.toFixed(0)} ppm</p>
+            <p className={styles.metricDelta}>RHR actual: {input.rhr} ppm</p>
+          </div>
+        </div>
+
+        <div className={styles.resultSummary}>
           <div>
-            <h2>Datos enviados</h2>
+            <h3>Datos enviados</h3>
             <p><strong>Nombre:</strong> {input.nombre_apellido}</p>
             <p><strong>Edad:</strong> {input.edad}</p>
             <p><strong>Género:</strong> {input.genero}</p>
@@ -101,79 +153,14 @@ export default function Resultados() {
             <p><strong>KM semanales:</strong> {input.kms_semanales}</p>
             <p><strong>Años corriendo:</strong> {input.anos_running}</p>
           </div>
-        </div>
-
-        <div className={styles.grid}>
           <div>
-            <h2>Informe de posibilidades de mejora</h2>
-            <table className={styles.table}>
-              <tbody>
-                <tr>
-                  <td>IMC</td>
-                  <td>{results.imc.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td>Mejora IMC pSE (kg/m²)</td>
-                  <td>{results.mejoraImcPse.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td>Mejora IMC Elite (kg/m²)</td>
-                  <td>{results.mejoraImcElite.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td>VO2max combinado</td>
-                  <td>{results.vo2Combined.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>VO2max pSE referencia</td>
-                  <td>{results.vo2PromMaxSexed.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>VO2max Elite referencia</td>
-                  <td>{results.vo2PromMaxElite.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>Posibilidad mejora VO2MAX pSE</td>
-                  <td>{results.mejoraVo2Pse.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>Posibilidad mejora VO2MAX Elite</td>
-                  <td>{results.mejoraVo2Elite.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>FCmax estimada</td>
-                  <td>{results.maxHrPredicted.toFixed(0)} ppm</td>
-                </tr>
-                <tr>
-                  <td>Posibilidad mejora FCmax</td>
-                  <td>{results.mejoraFcMax.toFixed(0)}</td>
-                </tr>
-                <tr>
-                  <td>Probabilidad mejora pSE (%)</td>
-                  <td>{results.mejoraYearsPse.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>Probabilidad mejora Elite (%)</td>
-                  <td>{results.mejoraYearsElite.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>Km semanales pSE de referencia</td>
-                  <td>{results.kmSemPse}</td>
-                </tr>
-                <tr>
-                  <td>Km semanales Elite de referencia</td>
-                  <td>{results.kmSemElite}</td>
-                </tr>
-                <tr>
-                  <td>Mejora km semanales pSE</td>
-                  <td>{results.mejoraKmSemanalesPse.toFixed(1)}</td>
-                </tr>
-                <tr>
-                  <td>Mejora km semanales Elite</td>
-                  <td>{results.mejoraKmSemanalesElite.toFixed(1)}</td>
-                </tr>
-              </tbody>
-            </table>
+            <h3>Rutas de mejora</h3>
+            <ul>
+              <li>Incrementar volumen hasta {results.kmSemPse} km/sem pSE o {results.kmSemElite} km/sem Elite.</li>
+              <li>Agregar {results.mejoraKmSemanalesPse.toFixed(1)} km/sem para alcanzar pSE.</li>
+              <li>Agregar {results.mejoraKmSemanalesElite.toFixed(1)} km/sem para acercarte a Elite.</li>
+              <li>Tu probabilidad de progreso pSE es {results.mejoraYearsPse.toFixed(1)}% y Elite {results.mejoraYearsElite.toFixed(1)}%.</li>
+            </ul>
           </div>
         </div>
 

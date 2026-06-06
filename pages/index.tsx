@@ -47,25 +47,20 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
-          <span className={styles.callout}>10K PACER</span>
-          <h1 className={styles.heroTitle}>Descubre tu potencial real como corredor.</h1>
+          <span className={styles.callout}>10K Pacer</span>
+          <h1 className={styles.heroTitle}>Entrena con datos, no con suposiciones.</h1>
           <p className={styles.heroSubtitle}>
-            Bienvenido a una experiencia profesional diseñada para corredores que quieren medir datos clave y traducirlos en resultados.
-            Completa tu perfil con precisión para conocer tu rendimiento y tu ruta hacia una versión más veloz y saludable.
+            Completa tu perfil y obtén un reporte personalizado de tu IMC, VO2max y frecuencia cardíaca.
+            Guarda tus datos en la tabla <strong>Principal</strong> para un análisis profesional y seguimiento confiable.
           </p>
           <p className={styles.heroSubtitle}>
-            Todos los campos son obligatorios. Tu información se guarda en la tabla <strong>Principal</strong> para análisis y resultados confiables.
+            La evaluación compara tu estado actual con las referencias pSE y Elite para definir tu próximo ciclo de mejora.
           </p>
         </div>
+      </section>
 
-        <div className={styles.imagePanel} style={{ backgroundImage: "url('/Llegada1.jpg')" }}>
-          <div className={styles.imagePanelContent}>
-            <h3>Bienvenido a la evaluación de rendimiento</h3>
-            <p>
-              Este espacio está pensado para corredores serios: velocidad, resistencia y datos precisos para conocerte mejor.
-            </p>
-          </div>
-        </div>
+      <section className={styles.welcomeImageSection}>
+        <img src="/Llegada1.jpg" alt="Corredor llegando a meta" className={styles.welcomeImage} />
       </section>
 
       <section className={styles.card}>

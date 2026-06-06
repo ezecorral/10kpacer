@@ -192,42 +192,110 @@ textarea.textarea {
   color: #b7c9ff;
 }
 
-.imagePanel {
-  min-height: 420px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255, 53, 20, 0.18), rgba(13, 20, 42, 0.96));
+.welcomeImageSection {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 32px;
-  color: var(--text);
-  position: relative;
+  margin: 0 auto;
+}
+
+.welcomeImage {
+  width: 100%;
+  max-width: 1140px;
+  border-radius: 32px;
+  object-fit: cover;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.22);
+}
+
+.darkCard {
+  background: #08101b;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #edf2ff;
+}
+
+.reportHeader {
+  max-width: 860px;
+  margin-bottom: 28px;
+}
+
+.reportHeader h2 {
+  margin: 0 0 10px;
+}
+
+.metricsGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metricCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metricCard h3 {
+  margin: 0 0 16px;
+  color: #fff;
+}
+
+.metricValue {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 0.95;
+}
+
+.metricCaption,
+.metricDelta {
+  margin: 6px 0;
+  color: #cbd7f2;
+  font-size: 0.97rem;
+}
+
+.metricDelta {
+  color: #adb9d6;
+}
+
+.metricTrack {
+  margin: 18px 0;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
-.imagePanel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 22%),
-    radial-gradient(circle at bottom right, rgba(255, 53, 20, 0.1), transparent 24%);
+.metricProgress {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff9f54, #ff5a2b);
 }
 
-.imagePanelContent {
-  position: relative;
-  z-index: 1;
+.resultSummary {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 32px;
 }
 
-.imagePanel h3 {
-  margin: 0 0 12px;
-  font-size: 1.4rem;
+.resultSummary h3 {
+  margin-bottom: 14px;
 }
 
-.imagePanel p {
-  max-width: 28rem;
-  margin: 0 auto;
-  color: var(--muted);
+.resultSummary ul {
+  padding-left: 18px;
+  margin: 0;
+  color: #d9e3ff;
+}
+
+.resultSummary ul li {
+  margin-bottom: 10px;
 }
 
 @media (max-width: 960px) {
