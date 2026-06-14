@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { calculateResults, getGenderKey, RunnerInput } from '../lib/calc';
 import LegalModal from '../components/LegalModal';
 import styles from '../styles/Home.module.css';
@@ -13,6 +13,7 @@ export default function Resultados() {
   const [input, setInput] = useState<RunnerInput | null>(null);
   const [results, setResults] = useState<ResultData | null>(null);
   const [modalType, setModalType] = useState<'privacy' | 'terms' | null>(null);
+  const shareImageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -80,15 +81,46 @@ export default function Resultados() {
   const shareText = `Mi IPG es ${results?.ipg}% y mi IPE es ${results?.ipe}%. Datos de 10kPacer.`;
 
   const handleInstagramShare = async () => {
-    if (typeof window === 'undefined') {
+    if (typeof window === 'undefined' || !shareImageRef.current) {
       return;
     }
 
     try {
-      await navigator.clipboard.writeText(shareText);
-      window.open('https://www.instagram.com/', '_blank');
+      const html2canvas = (await import('html2canvas')).default;
+      const canvas = await html2canvas(shareImageRef.current, {
+        backgroundColor: '#060708',
+        scale: 2,
+        useCORS: true,
+      });
+
+      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
+      if (!blob) {
+        throw new Error('No se pudo generar la imagen');
+      }
+
+      const file = new File([blob], '10kPacer-resultados.png', { type: 'image/png' });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: '10kPacer - IPG e IPE',
+          text: 'Mi resultado de performance en 10kPacer',
+        });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = '10kPacer-resultados.png';
+        anchor.click();
+        URL.revokeObjectURL(url);
+        window.alert('Se descargó la imagen para que puedas compartirla desde tu galería.');
+      }
     } catch (error) {
-      window.alert('El texto ya está copiado.');
+      console.error('Error compartiendo imagen:', error);
+      window.alert('No se pudo compartir la imagen. El texto quedó copiado en el portapapeles.');
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(shareText);
+      }
     }
   };
 
@@ -198,7 +230,7 @@ export default function Resultados() {
           </div>
         </div>
 
-        <div className={styles.indicatorPanel}>
+        <div className={styles.indicatorPanel} ref={shareImageRef}>
           <div className={styles.indicatorCard}>
             <div className={styles.indicatorHead}>
               <img src="/Logo.png" alt="10kPacer" className={styles.logoSmall} />
