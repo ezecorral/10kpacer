@@ -88,7 +88,7 @@ export default function Resultados() {
       await navigator.clipboard.writeText(shareText);
       window.open('https://www.instagram.com/', '_blank');
     } catch (error) {
-      window.alert('El texto ya está copiado. Abre Instagram y pégalo en tu historia.');
+      window.alert('El texto ya está copiado.');
     }
   };
 
@@ -223,10 +223,10 @@ export default function Resultados() {
         </div>
         <div className={styles.shareSection}>
           <p className={styles.shareText}>
-            Comparte tu IPG e IPE en Instagram: copia el texto y abre Instagram para publicarlo en tu historia.
+            Trabajamos para llevar nuestro análisis a todos los runners posibles, si estás de acuerdo, ayúdanos compartiendo.
           </p>
           <button type="button" className={styles.shareButton} onClick={handleInstagramShare}>
-            Copiar texto y abrir Instagram
+            Compartir
           </button>
         </div>
 
