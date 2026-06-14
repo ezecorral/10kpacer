@@ -209,9 +209,7 @@ export default function Resultados() {
             <p className={styles.indicatorNote}>
               Indicador General de Performance basado en tu brecha frente al grupo etario amateur / pSE.
             </p>
-            <p className={styles.indicatorMeaning}>
-              Valor numérico que indica qué tan cerca estás de la referencia de rendimiento amateur.
-            </p>
+            
           </div>
           <div className={styles.indicatorCard}>
             <div className={styles.indicatorHead}>
@@ -223,9 +221,7 @@ export default function Resultados() {
             <p className={styles.indicatorNote}>
               Índice Elite que muestra qué tanto te acercas al nivel Elite dentro de la referencia de tu categoría.
             </p>
-            <p className={styles.indicatorMeaning}>
-              Valor numérico que indica tu cercanía al rendimiento de los mejores corredores de tu categoría.
-            </p>
+            
           </div>
         </div>
         <div className={styles.shareSection}>
