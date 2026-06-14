@@ -100,12 +100,13 @@ export default function Resultados() {
       </Head>
       <section className={`${styles.hero} ${styles.resultHero}`}>
         <div className={styles.heroContent}>
-          <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
-          <span className={styles.callout}>Reporte de Performance</span>
           <h1 className={styles.heroTitle}>Tu informe de performance con datos reales</h1>
           <p className={styles.heroSubtitle}>
             Esta página compara tu perfil actual con valores de referencia pSE y Elite para mostrar tus espacios de mejora más relevantes.
           </p>
+        </div>
+        <div className={styles.heroLabelRight}>
+          <span className={styles.callout}>Reporte de Performance</span>
         </div>
       </section>
 
@@ -208,6 +209,9 @@ export default function Resultados() {
             <p className={styles.indicatorNote}>
               Indicador General de Performance basado en tu brecha frente al grupo etario amateur / pSE.
             </p>
+            <p className={styles.indicatorMeaning}>
+              Valor numérico que indica qué tan cerca estás de la referencia de rendimiento amateur.
+            </p>
           </div>
           <div className={styles.indicatorCard}>
             <div className={styles.indicatorHead}>
@@ -218,6 +222,9 @@ export default function Resultados() {
             <p className={styles.indicatorValue}>{results.ipe}%</p>
             <p className={styles.indicatorNote}>
               Índice Elite que muestra qué tanto te acercas al nivel Elite dentro de la referencia de tu categoría.
+            </p>
+            <p className={styles.indicatorMeaning}>
+              Valor numérico que indica tu cercanía al rendimiento de los mejores corredores de tu categoría.
             </p>
           </div>
         </div>

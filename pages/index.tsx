@@ -52,11 +52,9 @@ export default function Home() {
 
       <section className={`${styles.hero} ${styles.welcomeHero}`}>
         <div className={styles.heroContent}>
-          <img src="/Logo.png" alt="10K Pacer" className={styles.logo} />
-          <span className={styles.callout}>10K Pacer</span>
           <h1 className={styles.heroTitle}>Entrena con datos, no con suposiciones.</h1>
           <p className={styles.heroSubtitle}>
-            Completa tu perfil y obtén un reporte inmediato de tu rendimiento.
+            Completa tu perfil y obtén un reporte inmediato de tu rendimiento en comparación con otros atletas como tú.
             Descubre tu estado actual, tu potencial de mejora y tu próximo paso para correr mejor.
           </p>
           <p className={styles.heroSubtitle}>
@@ -65,6 +63,9 @@ export default function Home() {
           <p className={styles.heroSubtitle}>
             Compara tu estado con <span className={styles.tooltipWrapper}>pSE<span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>pSE es la referencia de rendimiento esperado para tu grupo etario amateur. Sirve como punto de comparación inicial.</span></span> y <span className={styles.tooltipWrapper}>Elite<span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>Elite es la referencia de rendimiento de perfil alto, usada como objetivo de excelencia dentro de tu categoría.</span></span>.
           </p>
+        </div>
+        <div className={styles.heroLogoPanel}>
+          <img src="/Logo.png" alt="10K Pacer" className={styles.heroSideLogo} />
         </div>
       </section>
 
@@ -79,20 +80,20 @@ export default function Home() {
               <label className={styles.label} htmlFor="nombre_apellido">
                 Nombre y apellido
               </label>
-              <input className={styles.input} id="nombre_apellido" name="nombre_apellido" type="text" required />
+              <input className={styles.input} id="nombre_apellido" name="nombre_apellido" type="text" placeholder="Ej. Juan Pérez" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="email">
                 Correo electrónico
               </label>
-              <input className={styles.input} id="email" name="email" type="email" required />
+              <input className={styles.input} id="email" name="email" type="email" placeholder="ejemplo@correo.com" required />
             </div>
           </div>
 
           <div className={`${styles.grid} ${styles.three}`}>
             <div>
               <label className={styles.label} htmlFor="edad">Edad</label>
-              <input className={styles.input} id="edad" name="edad" type="number" min="10" required />
+              <input className={styles.input} id="edad" name="edad" type="number" min="10" placeholder="32" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="genero">Forma física</label>
@@ -104,7 +105,7 @@ export default function Home() {
             </div>
             <div>
               <label className={styles.label} htmlFor="peso_kg">Peso en kg</label>
-              <input className={styles.input} id="peso_kg" name="peso_kg" type="number" step="0.1" min="30" required />
+              <input className={styles.input} id="peso_kg" name="peso_kg" type="number" step="0.1" min="30" placeholder="78,5" required />
             </div>
           </div>
 
@@ -124,7 +125,7 @@ export default function Home() {
             </div>
             <div>
               <label className={styles.label} htmlFor="vo2max">VO2MAX</label>
-              <input className={styles.input} id="vo2max" name="vo2max" type="number" step="0.1" required />
+              <input className={styles.input} id="vo2max" name="vo2max" type="number" step="0.1" placeholder="45,2" required />
               <p className={styles.description}>
                 Puede que tu reloj o celular tenga un cálculo estimado. Favor aclarar marca y modelo de dispositivo.
               </p>
@@ -142,7 +143,7 @@ export default function Home() {
           <div className={`${styles.grid} ${styles.two}`}>
             <div>
               <label className={styles.label} htmlFor="fc_max">Frecuencia cardíaca máxima alcanzada en ppm</label>
-              <input className={styles.input} id="fc_max" name="fc_max" type="number" min="100" required />
+              <input className={styles.input} id="fc_max" name="fc_max" type="number" min="100" placeholder="186" required />
               <p className={styles.description}>
                 Puede que tu reloj o celular tenga un cálculo estimado para compartirte.
               </p>
@@ -157,14 +158,14 @@ export default function Home() {
             </div>
             <div>
               <label className={styles.label} htmlFor="rhr">Frecuencia cardíaca de reposo RHR</label>
-              <input className={styles.input} id="rhr" name="rhr" type="number" min="30" required />
+              <input className={styles.input} id="rhr" name="rhr" type="number" min="30" placeholder="48" required />
             </div>
           </div>
 
           <div className={`${styles.grid} ${styles.three}`}>
             <div>
               <label className={styles.label} htmlFor="distancia_competencia_km">Distancia máxima corrida en competencia (km)</label>
-              <input className={styles.input} id="distancia_competencia_km" name="distancia_competencia_km" type="number" step="0.1" required />
+              <input className={styles.input} id="distancia_competencia_km" name="distancia_competencia_km" type="number" step="0.1" placeholder="10" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="tiempo_competencia">Tiempo competencia (hh:mm:ss)</label>
@@ -180,29 +181,29 @@ export default function Home() {
             </div>
             <div>
               <label className={styles.label} htmlFor="kms_semanales">Km que corres semanalmente</label>
-              <input className={styles.input} id="kms_semanales" name="kms_semanales" type="number" step="0.1" required />
+              <input className={styles.input} id="kms_semanales" name="kms_semanales" type="number" step="0.1" placeholder="55" required />
             </div>
           </div>
 
           <div className={`${styles.grid} ${styles.three}`}>
             <div>
               <label className={styles.label} htmlFor="kms_max_carga">Km en semana de mayor carga</label>
-              <input className={styles.input} id="kms_max_carga" name="kms_max_carga" type="number" step="0.1" required />
+              <input className={styles.input} id="kms_max_carga" name="kms_max_carga" type="number" step="0.1" placeholder="80" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="kms_por_sesion">Km por sesión de entrenamiento</label>
-              <input className={styles.input} id="kms_por_sesion" name="kms_por_sesion" type="number" step="0.1" required />
+              <input className={styles.input} id="kms_por_sesion" name="kms_por_sesion" type="number" step="0.1" placeholder="12" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="anos_running">Años en running</label>
-              <input className={styles.input} id="anos_running" name="anos_running" type="number" min="0" required />
+              <input className={styles.input} id="anos_running" name="anos_running" type="number" min="0" placeholder="4" required />
             </div>
           </div>
 
           <div className={`${styles.grid} ${styles.two}`}>
             <div>
               <label className={styles.label} htmlFor="distancia_max_sesion">Distancia máxima en sesión (km)</label>
-              <input className={styles.input} id="distancia_max_sesion" name="distancia_max_sesion" type="number" step="0.1" required />
+              <input className={styles.input} id="distancia_max_sesion" name="distancia_max_sesion" type="number" step="0.1" placeholder="18" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="mejor_10k_time">Tiempo más rápido 10K (hh:mm:ss)</label>
@@ -224,17 +225,17 @@ export default function Home() {
           <div className={`${styles.grid} ${styles.two}`}>
             <div>
               <label className={styles.label} htmlFor="ritmo_fondo">Ritmo de fondo (min/km)</label>
-              <input className={styles.input} id="ritmo_fondo" name="ritmo_fondo" type="number" step="0.1" required />
+              <input className={styles.input} id="ritmo_fondo" name="ritmo_fondo" type="number" step="0.1" placeholder="4,20" required />
             </div>
             <div>
               <label className={styles.label} htmlFor="ritmo_200m">Ritmo rápido en 200m (min/km)</label>
-              <input className={styles.input} id="ritmo_200m" name="ritmo_200m" type="number" step="0.1" required />
+              <input className={styles.input} id="ritmo_200m" name="ritmo_200m" type="number" step="0.1" placeholder="3,45" required />
             </div>
           </div>
 
           <div>
             <label className={styles.label} htmlFor="proximo_objetivo">Próximo objetivo</label>
-            <input className={styles.input} id="proximo_objetivo" name="proximo_objetivo" type="text" required />
+            <input className={styles.input} id="proximo_objetivo" name="proximo_objetivo" type="text" placeholder="Bajar un 10K a 40 min" required />
           </div>
 
           <div className={`${styles.grid} ${styles.two}`}>
@@ -244,19 +245,19 @@ export default function Home() {
             </div>
             <div>
               <label className={styles.label} htmlFor="evento_similar">¿Has corrido algún evento similar?</label>
-              <input className={styles.input} id="evento_similar" name="evento_similar" type="text" required />
+              <input className={styles.input} id="evento_similar" name="evento_similar" type="text" placeholder="Maratón Ciudad de Bs As" required />
             </div>
           </div>
 
           <div>
             <label className={styles.label} htmlFor="info_relevante">Agrega cualquier información relevante</label>
-            <textarea className={styles.textarea} id="info_relevante" name="info_relevante" required />
+            <textarea className={styles.textarea} id="info_relevante" name="info_relevante" placeholder="Ej. Corrí 10K con viento contrario" required />
           </div>
 
           <div className={styles.submitGroup}>
             <span className={styles.status}>{status}</span>
             <button type="submit" className={styles.button}>
-              Enviar y guardar en la base Principal
+              Enviar y obtener mi reporte de Performance!
             </button>
           </div>
         </form>

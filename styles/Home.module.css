@@ -24,11 +24,35 @@
   max-width: 640px;
 }
 
+.heroLogoPanel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.heroSideLogo {
+  width: 180px;
+  max-width: 220px;
+  display: block;
+}
+
 .logo {
   display: block;
   width: 100px;
   max-width: 160px;
   margin-bottom: 24px;
+}
+
+.heroLabelRight {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.indicatorMeaning {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.94rem;
 }
 
 .imagePanel {
