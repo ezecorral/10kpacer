@@ -550,9 +550,58 @@ textarea.textarea {
   margin-bottom: 10px;
 }
 
+@media (max-width: 1100px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .indicatorPanel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
+  }
+
+  .heroLabelRight {
+    justify-content: flex-start;
+  }
+
+  .shareSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shareText {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .metricsGrid,
+  .indicatorPanel,
+  .resultSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .metricCard,
+  .indicatorCard,
+  .card,
+  .hero.resultHero {
+    padding: 20px;
+  }
+
+  .resultSummary {
+    margin-top: 24px;
+  }
+
+  .metricCaption,
+  .metricDelta,
+  .shareText,
+  .indicatorNote {
+    font-size: 0.92rem;
   }
 }
 
@@ -561,7 +610,8 @@ textarea.textarea {
     padding: 20px;
   }
 
-  .grid.two, .grid.three {
+  .grid.two,
+  .grid.three {
     grid-template-columns: 1fr;
   }
 }
