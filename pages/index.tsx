@@ -62,6 +62,9 @@ export default function Home() {
           <p className={styles.heroSubtitle}>
             El informe se enfoca en tu desempeño real y en comparativas de referencia para guiar tu entrenamiento.
           </p>
+          <p className={styles.heroSubtitle}>
+            Compara tu estado con <span className={styles.tooltipWrapper}>pSE<span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>pSE es la referencia de rendimiento esperado para tu grupo etario amateur. Sirve como punto de comparación inicial.</span></span> y <span className={styles.tooltipWrapper}>Elite<span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>Elite es la referencia de rendimiento de perfil alto, usada como objetivo de excelencia dentro de tu categoría.</span></span>.
+          </p>
         </div>
       </section>
 

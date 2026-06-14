@@ -165,8 +165,8 @@ export default function Resultados() {
           <div className={styles.metricCard}>
             <h3>Km semanales</h3>
             <p className={styles.metricValue}>{input.kms_semanales.toFixed(1)}</p>
-            <p className={styles.metricCaption}>pSE: {results.kmSemPse} km/sem</p>
-            <p className={styles.metricCaption}>Elite: {results.kmSemElite} km/sem</p>
+            <p className={styles.metricCaption}>pSE: {results.kmSemPse} km/sem <span className={styles.tooltipWrapper}><span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>pSE es la referencia amateur de entrenamiento por semana para tu edad y género.</span></span></p>
+            <p className={styles.metricCaption}>Elite: {results.kmSemElite} km/sem <span className={styles.tooltipWrapper}><span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>Elite es la referencia de volumen semanal de los mejores corredores dentro de tu categoría.</span></span></p>
             <div className={styles.metricTrack}>
               <span
                 className={styles.metricProgress}
@@ -203,7 +203,7 @@ export default function Resultados() {
               <img src="/Logo.png" alt="10kPacer" className={styles.logoSmall} />
               <span className={styles.brandTag}>10kPacer</span>
             </div>
-            <p className={styles.indicatorLabel}>IPG</p>
+            <p className={styles.indicatorLabel}>IPG <span className={styles.tooltipWrapper}><span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>IPG es tu Indicador General de Performance. Refleja qué tan cerca estás de las referencias pSE en múltiples pilares.</span></span></p>
             <p className={styles.indicatorValue}>{results.ipg}%</p>
             <p className={styles.indicatorNote}>
               Indicador General de Performance basado en tu brecha frente al grupo etario amateur / pSE.
@@ -214,7 +214,7 @@ export default function Resultados() {
               <img src="/Logo.png" alt="10kPacer" className={styles.logoSmall} />
               <span className={styles.brandTag}>10kPacer</span>
             </div>
-            <p className={styles.indicatorLabel}>IPE</p>
+            <p className={styles.indicatorLabel}>IPE <span className={styles.tooltipWrapper}><span className={styles.tooltipIcon}>?</span><span className={styles.tooltipText}>IPE es tu Índice de Performance Elite. Indica qué tan cerca estás del nivel Elite dentro de tu categoría.</span></span></p>
             <p className={styles.indicatorValue}>{results.ipe}%</p>
             <p className={styles.indicatorNote}>
               Índice Elite que muestra qué tanto te acercas al nivel Elite dentro de la referencia de tu categoría.
