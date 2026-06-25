@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Script from 'next/script';
 import LegalModal from '../components/LegalModal';
 import styles from '../styles/Home.module.css';
 
@@ -259,6 +260,20 @@ export default function Home() {
             <button type="submit" className={styles.button}>
               Enviar y obtener mi reporte de Performance!
             </button>
+          </div>
+
+          <div style={{ margin: '1.5rem 0', textAlign: 'center' }}>
+            <ins
+              className="adsbygoogle"
+              style={{ display: 'block' }}
+              data-ad-client="ca-pub-4415505503427088"
+              data-ad-slot="1234567890"
+              data-ad-format="auto"
+              data-full-width-responsive="true"
+            />
+            <Script id="adsense-home-banner" strategy="afterInteractive">
+              {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+            </Script>
           </div>
         </form>
       </section>
