@@ -48,8 +48,15 @@ export default function Home() {
           name="description"
           content="Bienvenida profesional para corredores con cálculo automático y registro de datos en Supabase."
         />
+        <meta name="google-adsense-account" content="ca-pub-4415505503427088" />
         <link rel="icon" href="/Logo.png" />
       </Head>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4415505503427088"
+        crossOrigin="anonymous"
+        strategy="afterInteractive"
+      />
 
       <section className={`${styles.hero} ${styles.welcomeHero}`}>
         <div className={styles.heroContent}>
