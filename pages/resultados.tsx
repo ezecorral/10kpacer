@@ -129,6 +129,7 @@ export default function Resultados() {
     <div className={styles.page}>
       <Head>
         <title>Resultados | 10K Pacer</title>
+        <meta name="google-adsense-account" content="ca-pub-4415505503427088" />
         <link rel="icon" href="/Logo.png" />
       </Head>
       <Script
@@ -269,6 +270,20 @@ export default function Resultados() {
           <button type="button" className={styles.shareButton} onClick={handleInstagramShare}>
             Compartir
           </button>
+        </div>
+
+        <div style={{ margin: '1.5rem 0', textAlign: 'center' }}>
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-ad-client="ca-pub-4415505503427088"
+            data-ad-slot="1234567890"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+          <Script id="adsense-banner" strategy="afterInteractive">
+            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+          </Script>
         </div>
 
         <div className={styles.resultSummary}>
