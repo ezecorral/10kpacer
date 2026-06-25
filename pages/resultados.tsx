@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { calculateResults, getGenderKey, RunnerInput } from '../lib/calc';
@@ -130,6 +131,11 @@ export default function Resultados() {
         <title>Resultados | 10K Pacer</title>
         <link rel="icon" href="/Logo.png" />
       </Head>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4415505503427088"
+        crossOrigin="anonymous"
+      />
       <section className={`${styles.hero} ${styles.resultHero}`}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>Tu informe de performance con datos reales</h1>
