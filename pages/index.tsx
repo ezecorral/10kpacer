@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Script from 'next/script';
 import LegalModal from '../components/LegalModal';
 import styles from '../styles/Home.module.css';
 
@@ -48,15 +47,8 @@ export default function Home() {
           name="description"
           content="Bienvenida profesional para corredores con cálculo automático y registro de datos en Supabase."
         />
-        <meta name="google-adsense-account" content="ca-pub-4415505503427088" />
         <link rel="icon" href="/Logo.png" />
       </Head>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4415505503427088"
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
 
       <section className={`${styles.hero} ${styles.welcomeHero}`}>
         <div className={styles.heroContent}>
@@ -267,20 +259,6 @@ export default function Home() {
             <button type="submit" className={styles.button}>
               Enviar y obtener mi reporte de Performance!
             </button>
-          </div>
-
-          <div style={{ margin: '1.5rem 0', textAlign: 'center' }}>
-            <ins
-              className="adsbygoogle"
-              style={{ display: 'block' }}
-              data-ad-client="ca-pub-4415505503427088"
-              data-ad-slot="1234567890"
-              data-ad-format="auto"
-              data-full-width-responsive="true"
-            />
-            <Script id="adsense-home-banner" strategy="afterInteractive">
-              {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-            </Script>
           </div>
         </form>
       </section>
