@@ -267,7 +267,7 @@ export default function Resultados() {
 
         <div
           style={{
-            margin: '0 0 1.5rem',
+            margin: '2rem 0 1.5rem',
             padding: '1rem 1.25rem',
             borderRadius: '16px',
             background: 'linear-gradient(135deg, rgba(255, 98, 113, 0.18), rgba(255, 201, 77, 0.12))',
