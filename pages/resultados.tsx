@@ -265,9 +265,38 @@ export default function Resultados() {
           </button>
         </div>
 
-        <p style={{ margin: '0 0 1.5rem', textAlign: 'center', fontWeight: 700, color: '#f5f5f5' }}>
-          No dudes en escribirnos por Instagram si tienes dudas o quieres que te ayudemos a interpretar tus resultados.
-        </p>
+        <div
+          style={{
+            margin: '0 0 1.5rem',
+            padding: '1rem 1.25rem',
+            borderRadius: '16px',
+            background: 'linear-gradient(135deg, rgba(255, 98, 113, 0.18), rgba(255, 201, 77, 0.12))',
+            border: '1px solid rgba(255, 201, 77, 0.5)',
+            textAlign: 'center',
+            boxShadow: '0 8px 22px rgba(0, 0, 0, 0.18)',
+          }}
+        >
+          <p style={{ margin: '0 0 0.75rem', fontWeight: 800, color: '#fff', fontSize: '1rem', lineHeight: 1.4 }}>
+            No dudes en escribirnos por Instagram si tienes dudas o quieres que te ayudemos a interpretar tus resultados.
+          </p>
+          <a
+            href="https://www.instagram.com/10kpacer"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.25rem',
+              borderRadius: '999px',
+              background: '#f5c451',
+              color: '#101010',
+              fontWeight: 800,
+              textDecoration: 'none',
+              letterSpacing: '0.02em',
+            }}
+          >
+            Ir a Instagram
+          </a>
+        </div>
 
         <div className={styles.resultSummary}>
           <div>
