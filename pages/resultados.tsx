@@ -265,6 +265,10 @@ export default function Resultados() {
           </button>
         </div>
 
+        <p style={{ margin: '0 0 1.5rem', textAlign: 'center', fontWeight: 700, color: '#f5f5f5' }}>
+          No dudes en escribirnos por Instagram si tienes dudas o quieres que te ayudemos a interpretar tus resultados.
+        </p>
+
         <div className={styles.resultSummary}>
           <div>
             <h3>Datos enviados</h3>
